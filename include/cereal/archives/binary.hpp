@@ -67,7 +67,7 @@ namespace cereal
         auto const writtenSize = itsStream.rdbuf()->sputn( reinterpret_cast<const char*>( data ), size );
 
         if(writtenSize != size)
-          throw Exception("Failed to write " + std::to_string(size) + " bytes to output stream! Wrote " + std::to_string(writtenSize));
+          throw_exception("Failed to write " + std::to_string(size) + " bytes to output stream! Wrote " + std::to_string(writtenSize));
       }
 
     private:
@@ -102,7 +102,7 @@ namespace cereal
         auto const readSize = itsStream.rdbuf()->sgetn( reinterpret_cast<char*>( data ), size );
 
         if(readSize != size)
-          throw Exception("Failed to read " + std::to_string(size) + " bytes from input stream! Read " + std::to_string(readSize));
+          throw_exception("Failed to read " + std::to_string(size) + " bytes from input stream! Read " + std::to_string(readSize));
       }
 
     private:

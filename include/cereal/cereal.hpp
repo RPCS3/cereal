@@ -765,7 +765,7 @@ namespace cereal
 
         auto iter = itsSharedPointerMap.find( id );
         if(iter == itsSharedPointerMap.end())
-          throw Exception("Error while trying to deserialize a smart pointer. Could not find id " + std::to_string(id));
+          throw_exception("Error while trying to deserialize a smart pointer. Could not find id " + std::to_string(id));
 
         return iter->second;
       }
@@ -795,7 +795,7 @@ namespace cereal
         auto name = itsPolymorphicTypeMap.find( id );
         if(name == itsPolymorphicTypeMap.end())
         {
-          throw Exception("Error while trying to deserialize a polymorphic pointer. Could not find type id " + std::to_string(id));
+          throw_exception("Error while trying to deserialize a polymorphic pointer. Could not find type id " + std::to_string(id));
         }
         return name->second;
       }

@@ -148,13 +148,13 @@ namespace cereal
   template <class UserData, class Archive>
   UserData & get_user_data( Archive & ar )
   {
-    try
+    if (auto r = dynamic_cast<UserDataAdapter<UserData, Archive> *>( &ar ))
     {
-      return dynamic_cast<UserDataAdapter<UserData, Archive> &>( ar ).userdata;
+      return r->userdata;
     }
-    catch( std::bad_cast const & )
+    else
     {
-      throw ::cereal::Exception("Attempting to get user data from archive not wrapped in UserDataAdapter");
+      cereal::throw_exception("Attempting to get user data from archive not wrapped in UserDataAdapter");
     }
   }
   #endif // CEREAL_FUTURE_EXPERIMENTAL

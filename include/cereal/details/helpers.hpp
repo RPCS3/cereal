@@ -51,6 +51,9 @@ namespace cereal
     explicit Exception( const char * what_ ) : std::runtime_error(what_) {}
   };
 
+  [[noreturn]] void throw_exception(const char*);
+  [[noreturn]] void throw_exception(const std::string&);
+
   // ######################################################################
   //! The size type used by cereal
   /*! To ensure compatability between 32, 64, etc bit machines, we need to use
