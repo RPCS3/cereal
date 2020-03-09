@@ -297,7 +297,7 @@ namespace cereal
       //  uninitialized until initialized with placement new
       using NonConstT = typename std::remove_const<T>::type;
       std::shared_ptr<NonConstT> ptr(reinterpret_cast<NonConstT *>(new ST()),
-          [=]( NonConstT * t )
+          [=, this]( NonConstT * t )
           {
             if( *valid )
               t->~T();
